@@ -8,8 +8,6 @@ import Answers from "../Answers";
 import MiniPlayer from "../MiniPlayer";
 import ProgressBar from "../ProgressBar";
 
-
-
 const initialState = null;
 
 const reducer = (state, action) => {
@@ -25,7 +23,6 @@ const reducer = (state, action) => {
       const questions = _.cloneDeep(state);
       questions[action.questionID].options[action.optionIndex].checked =
         action.value;
-
       return questions;
     default:
       return state;
@@ -36,10 +33,9 @@ export default function Quiz() {
   const { id } = useParams();
   const { loading, error, questions } = useQuestions(id);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-
   const [qna, dispatch] = useReducer(reducer, initialState);
   const { currentUser } = useAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({
@@ -57,40 +53,30 @@ export default function Quiz() {
     });
   }
 
-  // handle when user clicks the next button to get the next question
   function nextQuestion() {
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion((prevCurrent) => prevCurrent + 1);
     }
   }
 
-  // handle when user clicks the prev button to get back to the previous question
   function prevQuestion() {
     if (currentQuestion >= 1 && currentQuestion <= questions.length) {
       setCurrentQuestion((prevCurrent) => prevCurrent - 1);
     }
   }
 
-  // submit quiz
   async function submit() {
     const { uid } = currentUser;
-
     const db = getDatabase();
-    const resultRef = ref(db, `result/${uid}`);
-
-    await set(resultRef, {
-      [id]: qna,
-    });
-
-    history.push({
-      pathname: `/result/${id}`,
+    const resultRef = ref(db, `result/${uid}/${id.id}`);
+    await set(resultRef, qna);
+    navigate(`/result/${id}`, {
       state: {
-        qna,
+        qna: qna,
       },
     });
   }
 
-  // calculate percentage of progress
   const percentage =
     questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
 
@@ -103,6 +89,7 @@ export default function Quiz() {
           <h1>{qna[currentQuestion].title}</h1>
           <h4>Question can have multiple answers</h4>
           <Answers
+            input
             options={qna[currentQuestion].options}
             handleChange={handleAnswerChange}
           />
