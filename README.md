@@ -7,6 +7,19 @@
 
 **I've designed a summary page to provide results and display correct or incorrect answers. This application is developed using React for the frontend and Node.js for the backend. Firebase database is also utilized**
 
+## ✍️ Features
+
+- Registration
+- Login
+- Watch vedio 
+- Questaion 
+- Result
+- Score
+- Summary
+- Corect /Wrong Status
+  
+
+
 
  # 👉 Login Page 
  
@@ -62,5 +75,19 @@
 
 <img    src="https://github.com/Rasel-Mahmud-61/Skill-Test/blob/main/images/Skill_app_summary_2.png">
 
+
+# 👉 Firebase Authentication 
+
+
+
+
+<img    src="https://github.com/Rasel-Mahmud-61/Skill-Test/blob/main/images/skill_app_firebase1.png">
+
+
+# 👉 Firebase RealTime Database 
+
+
+
+<img    src="https://github.com/Rasel-Mahmud-61/Skill-Test/blob/main/images/Firebase_2.png">
 
 
