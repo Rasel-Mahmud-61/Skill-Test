@@ -7,6 +7,14 @@
 
 **I've designed a summary page to provide results and display correct or incorrect answers. This application is developed using React for the frontend and Node.js for the backend. Firebase database is also utilized**
 
+## ✍️Technologies
+
+- React.js
+- Node.js
+- Firebase Database 
+
+
+
 ## ✍️ Features
 
 - Registration
@@ -18,6 +26,7 @@
 - Summary
 - Corect /Wrong Status
   
+
 
 
 
