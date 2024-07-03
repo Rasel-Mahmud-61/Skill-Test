@@ -24,7 +24,7 @@
 - Result
 - Score
 - Summary
-- Corect /Wrong Status
+- Correct /Wrong Answer Status
   
 
 
